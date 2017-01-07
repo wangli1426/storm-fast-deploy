@@ -1,3 +1,4 @@
-path=`pwd`
-echo "path is $path"
-ls $path
+#!/bin/bash
+
+sed -i "s/a: 1/a: 2/g" file
+cat file

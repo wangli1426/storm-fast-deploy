@@ -6,7 +6,7 @@ sudo /usr/share/zookeeper/bin/zkServer.sh restart
 echo "installing maven and openjdk-8..."
 sudo apt-get install -y maven
 sudo apt-get install -y openjdk-8-jdk
-
+sudo apt-get install -y python
 git clone -b intra-task-parallelism --depth=1  https://github.com/wangli1426/storm
 
 ROOT_PATH=`pwd`
