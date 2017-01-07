@@ -3,6 +3,7 @@ function print_help {
   echo "help info:"
   echo "-s" enable scaling [default = disable]
   echo "-l" enable intra-executor load balance [default = disable]
+  echo "-c num set the CPU budget"
 }
 
 while getopts hslc: option
