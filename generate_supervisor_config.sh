@@ -60,4 +60,4 @@ if [ -a $STORM_HOME ]; then
   echo "storm.yaml is updated in $STORM_HOME/conf"
 else
   echo "storm.yaml cannot be updated, as $STORM_HOME does not exist."
-fi"
+fi
