@@ -1,3 +1,29 @@
+function print_help {
+  echo "help info:"
+  echo "-c NUM set the CPU budget"
+  echo "-n IP set numbus ip"
+  echo "-z IP set the zookeeper ip [default = nimbus ip]"
+}
+
+STORM_HOME=apache-storm-0.11.0-SNAPSHOT
+
+while getopts hn:c:z: option
+do
+    case "${option}"
+    in
+      h) print_help;;
+      n) NIMBUS_IP=${OPTARG};;
+      z) ZOOKEEPER_IP=${OPTARG};;
+      c) CORES=${OPTARG};;
+      f) STORM_HOME=${OPTARG};;
+    esac
+done
+
+if [ -z $NIMBUS_IP ]; then
+  echo "specify nimbus_ip by -n IP"
+  exit 2;
+fi
+
 sudo apt-get update
 
 
@@ -20,4 +46,4 @@ cd $ROOT_PATH
 echo "extracting the binary code..."
 tar xvf apache-storm-0.11.0-SNAPSHOT.tar.gz
 
-bash generate_nimbus_config.sh
+bash generate_supervisor_config.sh -n $NIMBUS_IP -z $ZOOKEEPER_IP
