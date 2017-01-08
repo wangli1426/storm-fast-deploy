@@ -3,10 +3,13 @@ function print_help {
   echo "help info:"
   echo "-s" enable scaling [default = disable]
   echo "-l" enable intra-executor load balance [default = disable]
-  echo "-c num set the CPU budget"
+  echo "-c NUM set the CPU budget"
+  echo "-f PATH set the storm home path"
 }
 
-while getopts hslc: option
+STORM_HOME=apache-storm-0.11.0-SNAPSHOT
+
+while getopts hslc:f: option
 do
     case "${option}"
     in
@@ -14,6 +17,7 @@ do
       s) SCALING_FLAG=1;;
       l) LOAD_BALANCE_FLAG=1;;
       c) CORES=${OPTARG};;
+      f) STORM_HOME=${OPTARG};;
     esac
 done
 
@@ -46,3 +50,11 @@ if ! [ -z $CORES ]; then
 fi
 
 echo "storm.yaml is generated"
+
+if [ -a $STORM_HOME ]; then
+  mv storm.yaml $STORM_HOME/conf/
+  echo "storm.yaml in $STORM_HOME is updated!"
+else
+  echo "config file is not overwritten, as $STORM_HOME does not exist."
+fi
+

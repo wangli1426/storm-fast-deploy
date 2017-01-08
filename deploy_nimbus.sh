@@ -18,6 +18,8 @@ mvn clean package
 mvn clean package -Dgpg.skip
 cp target/apache-storm-0.11.0-SNAPSHOT.tar.gz $ROOT_PATH
 
+cd $ROOT_PATH
 echo "extracting the binary code..."
 tar xvf apache-storm-0.11.0-SNAPSHOT.tar.gz
 
+bash generate_nimbus_config.sh
