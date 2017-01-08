@@ -7,12 +7,16 @@ echo "installing maven and openjdk-8..."
 sudo apt-get install -y maven
 sudo apt-get install -y openjdk-8-jdk
 sudo apt-get install -y python
-git clone -b intra-task-parallelism --depth=1  https://github.com/wangli1426/storm
 
 ROOT_PATH=`pwd`
+
+git clone -b intra-task-parallelism --depth=1  https://github.com/wangli1426/storm
+
 echo "start to compile storm from source file..."
 cd storm
-mvn install -DskipTests
+git fetch origin
+git merge origin/intra-task-parallelism
+mvn clean install -DskipTests
 cd storm-dist/binary/
 mvn clean package
 mvn clean package -Dgpg.skip

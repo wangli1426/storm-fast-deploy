@@ -10,6 +10,8 @@ git clone -b intra-task-parallelism --depth=1  https://github.com/wangli1426/sto
 ROOT_PATH=`pwd`
 echo "start to compile storm from source file..."
 cd storm
+git fetch origin
+git merge origin/intra-task-parallelism
 mvn install -DskipTests
 cd storm-dist/binary/
 mvn clean package
