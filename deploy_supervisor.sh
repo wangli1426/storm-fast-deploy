@@ -24,6 +24,11 @@ if [ -z $NIMBUS_IP ]; then
   exit 2;
 fi
 
+if [ -z $ZOOKEEPER_IP ]; then
+  echo "supervisor ip is not specified, use nimbus ip $NIMBUS_IP as default."
+  ZOOKEEPER_IP=$NIMBUS_IP
+fi
+
 sudo apt-get update
 
 
