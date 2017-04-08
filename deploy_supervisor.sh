@@ -57,8 +57,9 @@ if [ -z $NO_COMPILE ]; then
   tar xvf apache-storm-0.11.0-SNAPSHOT.tar.gz
 else
  # cd $ROOT_PATH
+  chmod 400 LiWang.pem
   echo "copy apache binary folder from nimbus ($NIMBUS_IP)"
-  scp -r ubuntu@$NIMBUS_IP:/home/ubuntu/storm-fast-deploy/apache-storm-0.11.0-SNAPSHOT ./  
+  scp -r -i LiWang.pem ubuntu@$NIMBUS_IP:/home/ubuntu/storm-fast-deploy/apache-storm-0.11.0-SNAPSHOT ./  
   echo "$PWD"
 fi
 bash generate_supervisor_config.sh -n $NIMBUS_IP -z $ZOOKEEPER_IP
